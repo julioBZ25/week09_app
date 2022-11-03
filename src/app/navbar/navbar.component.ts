@@ -14,7 +14,7 @@ import { userData } from '../login-page/selectors/user.selectors';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  @Input('cart') cart!: CartRequest[];
+  @Input() cart!: CartRequest[];
   @Output() userEvent = new EventEmitter<UserResponse>();
   user!: UserResponse;
   constructor(
