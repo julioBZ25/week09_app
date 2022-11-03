@@ -1,0 +1,13 @@
+section{
+  padding: 4rem;
+  text-align: center;
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    h1 {
+      font-size: 4rem;
+      font-weight: 500;
+    }
+  }
+}
