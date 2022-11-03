@@ -1,0 +1,24 @@
+section {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 4rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    mat-form-field {
+      min-width: 300px ;
+    }
+  }
+}
+
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.active {
+  cursor: pointer;
+}

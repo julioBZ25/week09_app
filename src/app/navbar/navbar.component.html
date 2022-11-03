@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <span (click)="toHomePage()">Home</span>
+  <div>
+    <button mat-icon-button (click)="toCartPage()">
+      <mat-icon fontIcon="shopping_cart">
+      </mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon fontIcon="home">
+      </mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+  <span mat-menu-item [style.cursor]="'default'">{{user.name}}</span>
+  <span mat-menu-item [style.cursor]="'default'">{{user.email}}</span>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon  fontIcon="logout">Log out</mat-icon>
+    <span>Log out</span>
+  </button>
+</mat-menu>

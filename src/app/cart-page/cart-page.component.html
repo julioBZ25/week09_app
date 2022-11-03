@@ -1,0 +1,32 @@
+<app-navbar [cart]="cartRequest"></app-navbar>
+<section>
+  <div>
+    <h2>Cart's products: </h2>
+    <div class="product_list">
+      <mat-card class="product_card" *ngFor="let product of cart; let i = index">
+        <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+        <mat-card-title>
+          <a (click)="toProductPage(product.slug)">
+            {{product.name}}  
+          </a>
+        </mat-card-title>
+        <mat-card-content>
+          <p>Unit Price: $ {{(+product.master.price).toFixed(2)}}</p>
+          <p>Total Price: {{(cartRequest[i].quantity * +product.master.price).toFixed(2)}}</p>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions class="action_wrapper">
+          <button mat-raised-button color="primary" (click)="handleQuantity(product.id , 'add')">
+            <mat-icon fontIcon="add">
+            </mat-icon>
+          </button>
+          <span>{{cartRequest[i].quantity}}</span>
+          <button mat-raised-button color="primary" (click)="handleQuantity(product.id, 'remove')">
+            <mat-icon fontIcon="remove">
+            </mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</section>

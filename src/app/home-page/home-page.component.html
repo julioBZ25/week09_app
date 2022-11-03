@@ -1,0 +1,63 @@
+<app-navbar (userEvent)="getUser($event)" ></app-navbar>
+<section>
+  <div class="filter_wrapper">
+    <div>
+      <h3>Filter by category</h3>
+      <mat-form-field appearance="fill">
+        <mat-label>Select Category</mat-label>
+        <mat-select (selectionChange)="handleFilterByCategory($event)">
+          <mat-option [value]="-1" >None</mat-option>
+          <mat-option *ngFor="let category of categories.data" [value]="category.id">{{category.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <h3>Filter by name</h3>
+      <form #form="ngForm" (ngSubmit)="handleFilterByName(form.value)">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter product's name</mat-label>
+          <input ngModel name="name" #name="ngModel" maxlength="20" matInput type="text">
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+  <div>
+    <h1>Product list</h1>
+    <div class="product_list">
+      <mat-card class="product_card" *ngFor="let product of products">
+        <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+        <mat-card-title>
+          <a [routerLink]="['/product', product.slug]">
+            {{product.name}}  
+          </a>
+        </mat-card-title>
+        <mat-card-content>
+          <p>Price: $ {{(+product.master.price).toFixed(2)}}</p>
+          <p>Like count: {{product.likes_up_count}}</p>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions class="action_wrapper">
+          <div class="like_actions">
+            <button mat-raised-button color="primary" 
+              (click)="handleLike(product.id, 'up')"
+              [disabled]="disableLike(product.id)"
+            >Like</button>
+            <button mat-raised-button color="primary" (click)="handleLike(product.id, 'down')"
+            [disabled]="!disableLike(product.id)"
+            >Dislike</button>
+          </div>
+          <button mat-raised-button color="primary"
+            (click)="addProductToCart(product.id)"
+          >Add to the cart</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</section>
+<footer>
+  <mat-paginator [length]="paginator.total"
+              [pageSize]="paginator.per_page"
+              (page)="handlePaginator($event)"
+  >
+  </mat-paginator>
+</footer>

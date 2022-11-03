@@ -1,0 +1,25 @@
+<app-navbar (userEvent)="getUser($event)"></app-navbar>
+<section>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-subtitle>{{product.slug}}d</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://hr.clarusinfosolutions.com/modules/products/uploads/no-product.png" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>Description: {{product.description}}</p>
+      <p>Price: {{product.master.price}}</p>
+      <p>Likes: {{product.likes_up_count}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" 
+          (click)="handleLike(product.id, 'up')"
+          [disabled]="disableLike(product.id)"
+        >Like</button>
+        <button mat-raised-button color="primary" (click)="handleLike(product.id, 'down')"
+        [disabled]="!disableLike(product.id)"
+        >Dislike</button>
+    </mat-card-actions>
+  </mat-card>
+</section>
